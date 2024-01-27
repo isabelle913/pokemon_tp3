@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="text-center text-3xl">Bonjour{{ pokemons }}</div>
+    <div class="text-center text-3xl">Bonjour</div>
     <div class="wrapper">
       <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -13,13 +13,26 @@
 </template>
 
 <script setup>
+// import { onMounted } from "vue";
 // import { RouterLink, RouterView } from "vue-router";
-import { usePokemonsStore } from "./stores/pokemon";
 
-// const pokemonStore = usePokemonsStore();
-const { pokemons } = usePokemonsStore();
+/* TODO
+  Header
+  footer
 
-// console.log("Ici", pokemonStore.pokemons.value);
+  page home
+  page liste
+    Recherche simple
+    Recherche avancé / filtre
+  page favoris
+
+  card petite
+  card details
+
+  loading
+
+  readme
+*/
 </script>
 
 <style scoped></style>
