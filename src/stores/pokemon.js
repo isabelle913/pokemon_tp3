@@ -16,6 +16,7 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
       );
   });
 
+  // TODO anéliorer, il arrive que j'ai des clés duplicates
   function getUnikID() {
     return Date.now() + Math.trunc(Math.random() * 10000);
   }
