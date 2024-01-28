@@ -2,11 +2,11 @@ import axios from "axios";
 import { usePokemonsStore } from "../stores/pokemon";
 
 export function useServices() {
-  const { addPokemon, sortPokemon } = usePokemonsStore();
+  const { addPokemon, sortPokemons } = usePokemonsStore();
 
   const api = axios.create({ baseURL: "https://pokeapi.co/api/v2/" });
 
-  function requestPokemon(url) {
+  function requestPokemons(url) {
     console.log("requestPokemon");
 
     api
@@ -16,14 +16,14 @@ export function useServices() {
         resp.data.results.map((pokemon) => {
           addPokemon(pokemon);
         });
-        sortPokemon();
+        sortPokemons(true);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  return { requestPokemon };
+  return { requestPokemons };
 }
 //https://pokeapi.co/api/v2/
 // pokemon/?limit=1500&offset=0"
