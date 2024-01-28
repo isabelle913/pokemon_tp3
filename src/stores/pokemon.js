@@ -16,17 +16,24 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
       );
   });
 
-  // TODO anéliorer, il arrive que j'ai des clés duplicates
-  function getUnikID() {
-    return Date.now() + Math.trunc(Math.random() * 10000);
+  function getID(pokemon) {
+    return Number(pokemon.url.split("/")[6]);
   }
-
+  // TODO améliorer pour utiliser Class
   function addPokemon(pokemon) {
     pokemons.value.push({
-      id: getUnikID(),
+      id: getID(pokemon),
       name: pokemon.name,
       url: pokemon.url,
       isLoader: false,
+    });
+  }
+  // TODO déterminer les propriétés que je veux
+  function addDetailsPokemon(pokemonWithDetails) {
+    pokemons.value.map((pokemon) => {
+      if (pokemon.id === pokemonWithDetails.id) {
+        pokemon.base_experience = pokemonWithDetails.base_experience;
+      }
     });
   }
 
@@ -59,5 +66,6 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
     addPokemon,
     sortPokemons,
     setFilterValue,
+    addDetailsPokemon,
   };
 });
