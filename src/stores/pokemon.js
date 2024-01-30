@@ -2,8 +2,6 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 
 export const usePokemonsStore = defineStore("pokemonStore", () => {
-  // TODO ?? this. ou .value
-  // TODO ?? comme les notes ou comme https://pinia.vuejs.org/core-concepts/ avec state, getters, actions
   const pokemons = ref([]);
   const pokemonsFavorite = ref([]);
   let filterValue = ref("");
