@@ -1,20 +1,20 @@
 <template>
-  <header>
-    <div class="text-center text-3xl">Bonjour</div>
-    <div class="wrapper">
-      <!-- <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav> -->
-    </div>
-  </header>
-
+  <Header></Header>
   <RouterView />
+  <Footer></Footer>
 </template>
 
 <script setup>
-// import { onMounted } from "vue";
+import { onMounted } from "vue";
 // import { RouterLink, RouterView } from "vue-router";
+import { useObserverStore } from "./stores/observer";
+import { useObserver } from "./composables/observers";
+
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+
+const observerStore = useObserverStore();
+const observer = useObserver();
 
 /* TODO
   Header
@@ -32,7 +32,20 @@
   loading
 
   readme
+
+  Favicon
 */
 </script>
 
-<style scoped></style>
+<style>
+.header-class {
+  background-color: #222e50;
+}
+.nav-scrolled {
+  background-color: transparent;
+  color: white;
+}
+.nav-scrolled:hover {
+  color: #f4d77b;
+}
+</style>

@@ -1,9 +1,58 @@
+<template>
+  <section ref="homeRef" class="home-class section">
+    <!-- <div class="container mx-auto flex justify-center items-center text-white"> -->
+    <div
+      class="container mx-auto flex place-content-center items-center text-white h-full">
+      <span class="home-title">Pokemon</span>
+    </div>
+  </section>
+  <section class="section carousel h-[1000px]">Carousel</section>
+  <section class="section description h-[1000px]">Bandeau description</section>
+  <section class="section newsletter h-[1000px]">
+    inscription infolettre
+  </section>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import { onMounted, ref } from "vue";
+import { useObserverStore } from "../stores/observer";
+
+const observerStore = useObserverStore();
+
+const homeRef = ref(null);
+
+defineExpose({ homeRef });
+
+onMounted(() => {
+  observerStore.setHomeClass(document.querySelector(".home-class"));
+});
+
+/*
+2 images
+présenter sujet
+section inscription infolettre
+  nom
+  email
+  soumettre avec validation
+  message merci ou confirmation
+
+
+*/
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style>
+.home-class {
+  height: 100vh;
+  background-color: #222e50;
+}
+.home-title {
+  font-family: "Roboto Serif", serif;
+  font-weight: 400;
+  font-size: calc(4em + 8vw);
+  /* font-size: 15vw; */
+  /* font-size: min(30vw, 35px); */
+}
+.home-title:hover {
+  color: #f4d77b;
+}
+</style>
