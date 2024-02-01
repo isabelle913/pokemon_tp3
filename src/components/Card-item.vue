@@ -31,8 +31,10 @@
 
 <script setup>
 import { usePokemonsStore } from "../stores/pokemon";
+import { useRouter } from "vue-router";
 
 const store = usePokemonsStore();
+const router = useRouter();
 
 const props = defineProps({
   pokemon: {
@@ -47,8 +49,7 @@ function onFavorite(id) {
 }
 
 function goToDetails(id) {
-  // TODO mettre bouton vers pages détails
-  console.log("goToDetails", id);
+  router.push({ name: "pokemon", params: { id: id } });
 }
 </script>
 
