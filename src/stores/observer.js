@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
-export const useObserverStore = defineStore("pokemonStore", () => {
+export const useObserverStore = defineStore("observerStore", () => {
   const headerClass = ref(null);
   const homeClass = ref(null);
 
