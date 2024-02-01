@@ -7,12 +7,11 @@ export function useServices() {
   const api = axios.create({ baseURL: "https://pokeapi.co/api/v2/" });
 
   function requestPokemons(url) {
-    console.log("requestPokemon");
-
     api
       .get(url)
       .then((resp) => {
         console.log("resp", resp.data.results);
+        if (!resp.data.results) throw new Error("Aucun pokemon trouvé");
         resp.data.results.map((pokemon) => {
           addPokemon(pokemon);
         });
@@ -23,11 +22,11 @@ export function useServices() {
       });
   }
 
-  // TODO gestion des erreurs
+  // TODO gestion des erreurs +/- variable dans le store genre isError
 
   async function requestDetailsPokemon(pokemonsNeedDetails) {
-    console.log("requestDetailsPokemon", pokemonsNeedDetails);
-    console.log(pokemonsNeedDetails.length);
+    // console.log("requestDetailsPokemon", pokemonsNeedDetails);
+    // console.log(pokemonsNeedDetails.length);
 
     let min = 0;
     let max = 3;
@@ -45,7 +44,7 @@ export function useServices() {
         listID.map((id) => api.get(`pokemon/${id}/`))
       );
       // TODO  si pas de data ?
-      console.log(datas);
+      // console.log(datas);
       datas.map((pokemonWithDetails) => {
         if (pokemonWithDetails.status === 200)
           addDetailsPokemon(pokemonWithDetails.data);
