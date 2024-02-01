@@ -48,4 +48,9 @@ const observer = useObserver();
 .nav-scrolled:hover {
   color: #f4d77b;
 }
+.page-title {
+  font-family: "Roboto Serif", serif;
+  font-weight: 500;
+  font-size: calc(1em + 3vw);
+}
 </style>
