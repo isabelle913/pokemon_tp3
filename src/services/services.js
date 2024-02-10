@@ -5,8 +5,11 @@ export function useServices() {
   const { addPokemon, sortPokemons, addDetailsPokemon } = usePokemonsStore();
 
   const api = axios.create({ baseURL: "https://pokeapi.co/api/v2/" });
+  // TODO mettre variable pour limit et +/- offset
+  const url_base = "pokemon/?limit=15&offset=0";
 
-  function requestPokemons(url) {
+  function requestPokemons(url = url_base) {
+    console.log("requestPokemons");
     api
       .get(url)
       .then((resp) => {
@@ -25,11 +28,15 @@ export function useServices() {
   // TODO gestion des erreurs +/- variable dans le store genre isError
 
   async function requestDetailsPokemon(pokemonsNeedDetails) {
-    // console.log("requestDetailsPokemon", pokemonsNeedDetails);
+    console.log("requestDetailsPokemon 0", pokemonsNeedDetails);
     // console.log(pokemonsNeedDetails.length);
 
+    if (!pokemonsNeedDetails.length) return;
+    console.log("requestDetailsPokemon 1", pokemonsNeedDetails);
+
     let min = 0;
-    let max = 3;
+    let max =
+      pokemonsNeedDetails.length <= 3 ? pokemonsNeedDetails.length - 1 : 3;
     const length = pokemonsNeedDetails.length - 1;
 
     for (let y = 0; y <= length; y = y + 4) {
