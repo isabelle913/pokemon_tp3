@@ -1,12 +1,15 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { useTypesStyle } from "../composables/types-style";
+import { useGetStats } from "../composables/get-stats";
 
 export const usePokemonsStore = defineStore("pokemonStore", () => {
   const typeStyle = useTypesStyle();
+  const composableGetStats = useGetStats();
+
   const pokemons = ref([]);
   const pokemonsFavorite = ref([]); // TODO est-ce que j'utilise seulement la propriété ou cet array? Voir demande du projet
-  let filterValue = ref("");
+  let filterValue = ref(""); // TODO si doit vraiment être let!
 
   const pokemonsFiltered = computed(() => {
     if (!filterValue.value) return pokemons.value;
@@ -16,10 +19,6 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
       );
   });
 
-  function getID(pokemon) {
-    return Number(pokemon.url.split("/")[6]);
-  }
-
   function addPokemon(pokemon) {
     const displayName = pokemon.name.replace(
       pokemon.name.charAt(0),
@@ -27,27 +26,34 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
     );
 
     pokemons.value.push({
-      id: getID(pokemon),
+      id: Number(pokemon.url.split("/")[6]),
       name: pokemon.name,
       displayName,
       url: pokemon.url,
-      isLoader: false,
+      isLoaded: false,
       isFavorite: false,
     });
   }
 
   function addDetailsPokemon(pokemonWithDetails) {
-    // console.log(typeStyle.getTypeStyle());
-    // console.log("pokemonWithDetails", pokemonWithDetails.types);
+    // console.log("pokemonWithDetails", pokemonWithDetails);
+    // console.log(
+    //   "pokemonWithDetails",
+    //   composableGetStats.getStats(pokemonWithDetails.stats)
+    // );
 
+    // TODO faire une class
     pokemons.value.map((pokemon) => {
+      //prettier-ignore
       if (pokemon.id === pokemonWithDetails.id) {
-        pokemon.base_experience = pokemonWithDetails.base_experience;
-        pokemon.img =
-          pokemonWithDetails.sprites.other.dream_world.front_default;
-        pokemon.types = pokemonWithDetails.types.map((type) =>
-          typeStyle.getTypeStyle(type.type.name)
-        );
+        pokemon.isLoaded = true;
+        pokemon.experience = pokemonWithDetails.base_experience;
+        pokemon.img = pokemonWithDetails.sprites.other.dream_world.front_default;
+        pokemon.types = pokemonWithDetails.types.map((type) => typeStyle.getTypeStyle(type.type.name));
+        pokemon.height = pokemonWithDetails.height;
+        pokemon.weight = pokemonWithDetails.weight;
+        pokemon.abilities = pokemonWithDetails.abilities.map((ability) => ability.ability.name);
+        pokemon.stats = composableGetStats.getStats(pokemonWithDetails.stats);
       }
       // }
     });
