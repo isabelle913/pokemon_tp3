@@ -1,6 +1,11 @@
 <template>
   <div class="footer py-10">
-    <div class="container mx-auto">Je suis un pied de page</div>
+    <div class="container mx-auto flex flex-wrap gap-3 justify-center">
+      <div>Isabelle Langlois</div>
+      <div>TP3 - Intégration d'interface utilisateur</div>
+      <div>Cégep de Trois-Rivières</div>
+      <div>février 2024</div>
+    </div>
   </div>
 </template>
 
