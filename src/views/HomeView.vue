@@ -1,20 +1,21 @@
 <template>
   <section ref="homeRef" class="home-class section">
     <!-- <div class="container mx-auto flex justify-center items-center text-white"> -->
-    <div
-      class="container mx-auto flex place-content-center items-center text-white h-full">
-      <span class="home-title">Pokemon</span>
+    <div class="container mx-auto flex place-content-center items-center text-white h-full">
+      <div class="home-title mb-32">
+        Pokem
+        <img class="w-[250px] h-[250px] inline" src="../assets/img/pokemon-symbol-logo-1000-blanc.png" alt="Balle Pokemon" />
+        n
+      </div>
     </div>
   </section>
   <section class="section carousel h-[1000px]">Carousel</section>
   <section class="section description h-[1000px]">Bandeau description</section>
-  <section class="section newsletter h-[1000px]">
-    inscription infolettre
-  </section>
+  <section class="section newsletter h-[1000px]">inscription infolettre</section>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useObserverStore } from "../stores/observer";
 
 const observerStore = useObserverStore();
