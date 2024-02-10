@@ -12,14 +12,13 @@
       </svg>
     </div>
 
-    <!-- prettier-ignore -->
     <div v-if="isGrillDisplay" class="flex flex-col sm:flex-row items-center sm:flex-wrap sm:justify-center gap-8 my-6">
       <CardItem v-for="pokemon in displayPokemons" :key="pokemon.id" :pokemon="pokemon" />
     </div>
-    <!-- prettier-ignore -->
-    <div v-else class=" flex flex-col gap-8">
+    <div v-else class="flex flex-col gap-8">
       <ListItem v-for="pokemon in displayPokemons" :key="pokemon.id" :pokemon="pokemon" />
     </div>
+
     <!-- bas du tableau -->
     <div class="grid grid-cols-12 items-center">
       <div class="col-span-10 flex gap-8 justify-center">
@@ -30,8 +29,7 @@
           </svg>
           Page précédante
         </RouterLink>
-        <!-- prettier-ignore -->
-        <RouterLink :to="{ name: 'list', query: { page: nextPage } }" :class="{ disabledLink: !nextPage }" class="flex gap-2 text-2xl  items-center"> 
+        <RouterLink :to="{ name: 'list', query: { page: nextPage } }" :class="{ disabledLink: !nextPage }" class="flex gap-2 text-2xl items-center">
           Page suivante
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
@@ -43,8 +41,7 @@
         <input
           class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-indigo-600 checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca"
           type="checkbox" role="switch" id="flexSwitchCheckDefault" v-model="isGrillDisplay" />
-        <!-- prettier-ignore -->
-        <label class="inline-block pl-[0.15rem] hover:cursor-pointer text-2xl" for="flexSwitchCheckDefault" >Grille</label >
+        <label class="inline-block pl-[0.15rem] hover:cursor-pointer text-2xl" for="flexSwitchCheckDefault">Grille</label>
       </div>
       <div class="col-span-1 flex justify-end">
         <!-- prettier-ignore -->
@@ -90,13 +87,10 @@ const nextPage = computed(() => {
   const lastPage = store.pokemonsFiltered?.length / nbPokemonsByPage.value;
   return currentPage.value <= lastPage ? nextPage : false;
 });
-const firstIndex = computed(
-  () => (currentPage.value - 1) * nbPokemonsByPage.value
-);
+const firstIndex = computed(() => (currentPage.value - 1) * nbPokemonsByPage.value);
 const lastIndex = computed(() => currentPage.value * nbPokemonsByPage.value);
 const displayPokemons = computed(() => {
-  if (store.pokemonsFiltered)
-    return store.pokemonsFiltered.slice(firstIndex.value, lastIndex.value);
+  if (store.pokemonsFiltered) return store.pokemonsFiltered.slice(firstIndex.value, lastIndex.value);
   else return [];
 });
 
@@ -116,24 +110,17 @@ function onSort() {
 }
 
 function getDetailsPokemons() {
-  // prettier-ignore
   const pokemonsNeedDetails = displayPokemons.value.filter((pokemon) => !pokemon.isLoaded);
-
-  // TODO vérifier si vide pas d'appel
-  if (pokemonsNeedDetails) requestDetailsPokemon(pokemonsNeedDetails);
+  if (pokemonsNeedDetails.length > 0) requestDetailsPokemon(pokemonsNeedDetails);
 }
-
-function load() {
-  // TODO mettre variables globale pour limit, offset, nbPokemonsByPage, ...
-  if (store.pokemons && store.pokemons.length) return;
-
-  requestPokemons("pokemon/?limit=15&offset=0");
-}
-load();
 
 watch(displayPokemons, () => {
   getDetailsPokemons();
 });
+function load() {
+  getDetailsPokemons();
+}
+load();
 </script>
 
 <style scoped>
