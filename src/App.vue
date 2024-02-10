@@ -25,6 +25,8 @@ onBeforeMount(() => {
   requestPokemons();
 });
 
+// TODO M'assurer que pas en double
+
 /* TODO
   Header
   footer
@@ -42,7 +44,6 @@ onBeforeMount(() => {
 
   readme
 
-  Favicon
 */
 </script>
 

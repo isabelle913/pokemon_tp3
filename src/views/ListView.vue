@@ -3,6 +3,7 @@
     <div class="text-center page-title">Pokemons</div>
 
     <div class="flex justify-center py-8 gap-4">
+      <!-- TODO mettre le X sous l'input sur très petit écran -->
       <!-- prettier-ignore -->
       <input v-model.trim="searchPokemon" type="text" name="searchPokemon" placeholder="Quel Pokemon cherchez-vous?" id="searchPokemon" @input="onSearchPokemon"
         class="w-1/2 border-0 rounded-md py-3 px-7 text-gray-900 placeholder:text-gray-400 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:text-lg md:text-xl text-center" />
