@@ -8,6 +8,8 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
   const composableGetStats = useGetStats();
 
   const pokemons = ref([]);
+  const filterValue = ref("");
+
   const pokemonsFavorite = computed(() => {
     const list = [];
     pokemons.value.forEach((pokemon) => {
@@ -15,16 +17,12 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
     });
     return list;
   });
-
-  const filterValue = ref("");
-
   const firstPokemon = computed(() => {
     return 1;
   });
   const lastPokemon = computed(() => {
     return pokemons.value.length;
   });
-
   const pokemonsFiltered = computed(() => {
     if (!filterValue.value) return pokemons.value;
     else return pokemons.value.filter((pokemon) => pokemon.name.includes(filterValue.value));
