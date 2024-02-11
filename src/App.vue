@@ -26,6 +26,7 @@ onBeforeMount(() => {
 });
 
 // TODO M'assurer que pas en double
+// TODO tester focus en plus du hover
 
 /* TODO
   Header
