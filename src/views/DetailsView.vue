@@ -57,7 +57,7 @@
         </div>
 
         <div class="col-span-4 flex justify-center">
-          <button class="btn-nav rounded py-3 px-6 flex justify-center" @click="goToList">
+          <button class="btn-nav btn-nav-active rounded py-3 px-6 flex justify-center" @click="goToList">
             <span class="hidden sm:block">Retour à la liste</span>
             <span class="block sm:hidden">Liste</span>
           </button>
@@ -104,7 +104,6 @@ let pokemon = reactive({});
 
 const screenHeight = ref(window.innerHeight);
 const screenHeightStyle = computed(() => {
-  // TODO corriger si changement header 88 footer 104
   return screenHeight.value - 88 - 104 - 120 + "px";
 });
 const isActiveBtnPreviousPokemon = computed(() => {
@@ -158,7 +157,9 @@ img {
   background-color: #222e50;
   color: white;
 }
-.btn-nav-active:hover {
+.btn-nav-active:hover,
+.btn-nav-active:focus {
   color: #f4d77b;
+  scale: 1.2;
 }
 </style>

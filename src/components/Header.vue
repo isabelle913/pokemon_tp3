@@ -6,9 +6,9 @@
           <img class="w-[100px]" src="../assets/img/pikachu-500.png" />
         </div>
         <div class="flex gap-5 self-center text-xl md:text-2xl font-medium mr-8">
-          <RouterLink :to="{ name: 'home' }" class="nav-link">Accueil</RouterLink>
-          <RouterLink :to="{ name: 'list' }" class="nav-link">Liste des Pokemons</RouterLink>
-          <RouterLink :to="{ name: 'favorites' }" class="nav-link">Vos favoris</RouterLink>
+          <RouterLink :to="{ name: 'home' }" class="nav-link focus:outline-none">Accueil</RouterLink>
+          <RouterLink :to="{ name: 'list' }" class="nav-link focus:outline-none">Liste des Pokemons</RouterLink>
+          <RouterLink :to="{ name: 'favorites' }" class="nav-link focus:outline-none">Vos favoris</RouterLink>
         </div>
       </div>
     </div>
@@ -16,10 +16,10 @@
 </template>
 
 <script setup>
-// TODO mettre fixed dans le haut
 // TODO hamburger sur petits écrans ou diminuer encore taille du texte
+// TODO ?? POurquoi le lien home nous ramène dans le bas de la page!
 
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { useObserverStore } from "../stores/observer";
 import { RouterLink, useRouter } from "vue-router";
 
@@ -36,7 +36,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus {
   color: #f4d77b;
 }
 .router-link-exact-active {
