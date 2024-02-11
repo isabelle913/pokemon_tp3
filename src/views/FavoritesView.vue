@@ -52,7 +52,6 @@ const screenHeight = ref(window.innerHeight);
 const hasFavorite = computed(() => (store.pokemonsFavorite.length > 0 ? true : false));
 
 const screenHeightStyle = computed(() => {
-  // TODO corriger si changement header 88 footer 104
   return screenHeight.value - 88 - 104 - 120 + "px";
 });
 

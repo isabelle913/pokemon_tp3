@@ -103,7 +103,6 @@ const hasDisplayPokemons = computed(() => {
 });
 
 const screenHeightStyle = computed(() => {
-  // TODO corriger si changement header 88 footer 104
   return screenHeight.value - 88 - 104 - 120 + "px";
 });
 

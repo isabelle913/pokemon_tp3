@@ -5,38 +5,29 @@
 </template>
 
 <script setup>
-import { onMounted, onBeforeMount } from "vue";
-// import { RouterLink, RouterView } from "vue-router";
+import { onBeforeMount } from "vue";
 import { usePokemonsStore } from "./stores/pokemon";
 import { useServices } from "./services/services.js";
-import { useObserverStore } from "./stores/observer";
-import { useObserver } from "./composables/observers";
 
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 
 const store = usePokemonsStore();
-const { requestPokemons, requestDetailsPokemon } = useServices();
-const observerStore = useObserverStore(); // TODO valider si doit garder
-const observer = useObserver(); // TODO valider si doit garder
+const { requestPokemons } = useServices();
 
 onBeforeMount(() => {
   if (store.pokemons && store.pokemons.length) return;
   requestPokemons();
 });
 
-// TODO M'assurer que pas en double
-// TODO tester focus en plus du hover
-
 /* TODO
-
   menu hamburger
 
-  page home
+  Changer limit pour api
 
   loading
 
-  readme
+  Mettre en ligne
 */
 </script>
 
