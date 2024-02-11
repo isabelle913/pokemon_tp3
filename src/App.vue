@@ -29,22 +29,14 @@ onBeforeMount(() => {
 // TODO tester focus en plus du hover
 
 /* TODO
-  Header
-  footer
+
+  menu hamburger
 
   page home
-  page liste
-    Recherche simple
-    Recherche avancé / filtre
-  page favoris
-
-  card petite
-  card details
 
   loading
 
   readme
-
 */
 </script>
 
