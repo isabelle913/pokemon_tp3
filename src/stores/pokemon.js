@@ -16,15 +16,13 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
     return list;
   });
 
-  let filterValue = ref(""); // TODO si doit vraiment être let!
+  const filterValue = ref("");
 
-  // TODO Compléter le first et last
-  // TODO s'assurer de retourner number
   const firstPokemon = computed(() => {
     return 1;
   });
   const lastPokemon = computed(() => {
-    return 15;
+    return pokemons.value.length;
   });
 
   const pokemonsFiltered = computed(() => {
@@ -46,13 +44,6 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
   }
 
   function addDetailsPokemon(pokemonWithDetails) {
-    // console.log("pokemonWithDetails", pokemonWithDetails);
-    // console.log(
-    //   "pokemonWithDetails",
-    //   composableGetStats.getStats(pokemonWithDetails.stats)
-    // );
-
-    // TODO faire une class
     pokemons.value.map((pokemon) => {
       //prettier-ignore
       if (pokemon.id === pokemonWithDetails.id) {
