@@ -6,7 +6,7 @@ export function useServices() {
 
   const api = axios.create({ baseURL: "https://pokeapi.co/api/v2/" });
   // TODO mettre variable pour limit et +/- offset
-  const url_base = "pokemon/?limit=15&offset=0";
+  const url_base = "pokemon/?limit=150&offset=0";
 
   function requestPokemons(url = url_base) {
     // console.log("requestPokemons", pokemons);
