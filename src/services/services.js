@@ -9,7 +9,7 @@ export function useServices() {
   const url_base = "pokemon/?limit=15&offset=0";
 
   function requestPokemons(url = url_base) {
-    console.log("requestPokemons", pokemons);
+    // console.log("requestPokemons", pokemons);
     if (!pokemons) console.log("!!!!!!!!"); // TODO remplacer par un return
     api
       .get(url)
@@ -29,11 +29,11 @@ export function useServices() {
   // TODO gestion des erreurs +/- variable dans le store genre isError
 
   async function requestDetailsPokemon(pokemonsNeedDetails) {
-    console.log("requestDetailsPokemon 0", pokemonsNeedDetails);
+    // console.log("requestDetailsPokemon 0", pokemonsNeedDetails);
     // console.log(pokemonsNeedDetails.length);
 
     if (!pokemonsNeedDetails.length) return;
-    console.log("requestDetailsPokemon 1", pokemonsNeedDetails);
+    // console.log("requestDetailsPokemon 1", pokemonsNeedDetails);
 
     let min = 0;
     let max = pokemonsNeedDetails.length <= 3 ? pokemonsNeedDetails.length - 1 : 3;
