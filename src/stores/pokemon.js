@@ -8,7 +8,14 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
   const composableGetStats = useGetStats();
 
   const pokemons = ref([]);
-  const pokemonsFavorite = ref([]); // TODO est-ce que j'utilise seulement la propriété ou cet array? Voir demande du projet
+  const pokemonsFavorite = computed(() => {
+    const list = [];
+    pokemons.value.forEach((pokemon) => {
+      if (pokemon.isFavorite) list.push(pokemon);
+    });
+    return list;
+  });
+
   let filterValue = ref(""); // TODO si doit vraiment être let!
 
   // TODO Compléter le first et last
