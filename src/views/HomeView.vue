@@ -1,23 +1,43 @@
 <template>
   <!-- Titre -->
   <section ref="homeRef" class="home-class section">
-    <!-- <div class="container mx-auto flex justify-center items-center text-white"> -->
-    <div class="container mx-auto flex place-content-center items-center text-white h-full">
-      <div class="home-title mb-32">
-        Pokem
-        <img class="w-[250px] h-[250px] inline" src="../assets/img/pokemon-symbol-logo-1000-blanc.png" alt="Balle Pokemon" />
-        n
+    <div class="container mx-auto flex justify-center items-center text-white h-full">
+      <div class="home-title mb-32 text-center">
+        Pokem<span class="sm:hidden">o</span>
+        <span class="hidden sm:inline md:mx-2 lg-mx-4 xl:mx-10"
+          ><img
+            class="w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[200px] lg:h-[200px] xl:w-[250px] xl:h-[250px] 2xl:w-[300px] 2xl:h-[300px] inline"
+            src="../assets/img/pokemon-symbol-logo-1000-blanc.png"
+            alt="Balle Pokemon" /></span
+        >n
       </div>
     </div>
   </section>
-  <!-- Slider -->
-  <section class="section carousel pt-4">
-    <div class="slider-pokemons auto-cols-max">
-      <CardItem v-for="pokemon in displayPokemons" :key="pokemon.id" :pokemon="pokemon" :show-favorite="false" :show-types="false" />
-    </div>
-  </section>
-  <section class="section description h-[1000px]">Bandeau description</section>
-  <section class="section newsletter h-[1000px]">inscription infolettre</section>
+
+  <div class="background-home">
+    <!-- Slider -->
+    <section class="section carousel pt-4">
+      <div class="slider-pokemons auto-cols-max">
+        <CardItem v-for="pokemon in displayPokemons" :key="pokemon.id" :pokemon="pokemon" :show-favorite="false" :show-types="false" />
+      </div>
+    </section>
+
+    <!-- description -->
+    <section class="section description">
+      <div class="container mx-auto flex flex-col bg-white my-6 p-6 rounded font-medium">
+        <div class="text-2xl md:text-3xl font-medium mb-6">Je vous présente mon site sur les Pokémons.</div>
+        <div class="mb-3 text-xl md:text-2xl">
+          J’ai pris plaisir à faire ce TP3 du cours « Intégration d'interface utilisateur ». Cours dans le cadre d’un AEC fait au Cégep de Trois-Rivières.
+        </div>
+        <div class="text-xl md:text-2xl">
+          Les Frameworks Vue.js et Tailwind CSS ainsi que Axios et PokéApi ont été mes outils. Merci, PokéApi pour ton savoir infini.
+        </div>
+      </div>
+    </section>
+
+    <!-- Pokemons newsletter -->
+    <section class="section newsletter pb-6"><pok-news></pok-news></section>
+  </div>
 </template>
 
 <script setup>
@@ -26,6 +46,7 @@ import { useObserverStore } from "../stores/observer";
 import { usePokemonsStore } from "../stores/pokemon";
 import { useServices } from "../services/services.js";
 import CardItem from "@/components/Card-item.vue";
+import PokNews from "@/components/pok-news.vue";
 
 const observerStore = useObserverStore();
 const store = usePokemonsStore();
@@ -38,8 +59,6 @@ defineExpose({ homeRef });
 onMounted(() => {
   observerStore.setHomeClass(document.querySelector(".home-class"));
 });
-
-/// section slider
 
 const displayPokemons = computed(() => {
   if (store.pokemons) return store.pokemons.slice(1, 10);
@@ -61,17 +80,6 @@ load();
 watch(displayPokemons, () => {
   getDetailsPokemons();
 });
-
-/*
-  présenter sujet
-  section inscription infolettre
-    nom
-    email
-    soumettre avec validation
-    message merci ou confirmation
-
-
-  */
 </script>
 
 <style>
@@ -113,5 +121,9 @@ watch(displayPokemons, () => {
 .carousel {
   /* background-color: #222e50; */
   background: linear-gradient(#222e50, transparent);
+}
+.background-home {
+  background-image: url("../assets/img/background-ligne-grises.jpg");
+  background-size: cover;
 }
 </style>
