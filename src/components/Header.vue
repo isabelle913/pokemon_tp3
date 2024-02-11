@@ -5,7 +5,7 @@
         <div class="cursor-pointer" @click="goToHome">
           <img class="w-[100px]" src="../assets/img/pikachu-500.png" />
         </div>
-        <div class="flex gap-5 self-center text-xl md:text-2xl font-medium">
+        <div class="flex gap-5 self-center text-xl md:text-2xl font-medium mr-8">
           <RouterLink :to="{ name: 'home' }" class="nav-link">Accueil</RouterLink>
           <RouterLink :to="{ name: 'list' }" class="nav-link">Liste des Pokemons</RouterLink>
           <RouterLink :to="{ name: 'favorites' }" class="nav-link">Vos favoris</RouterLink>
