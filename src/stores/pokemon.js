@@ -11,19 +11,22 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
   const pokemonsFavorite = ref([]); // TODO est-ce que j'utilise seulement la propriété ou cet array? Voir demande du projet
   let filterValue = ref(""); // TODO si doit vraiment être let!
 
+  // TODO Compléter le first et last
+  // TODO s'assurer de retourner number
+  const firstPokemon = computed(() => {
+    return 1;
+  });
+  const lastPokemon = computed(() => {
+    return 15;
+  });
+
   const pokemonsFiltered = computed(() => {
     if (!filterValue.value) return pokemons.value;
-    else
-      return pokemons.value.filter((pokemon) =>
-        pokemon.name.includes(filterValue.value)
-      );
+    else return pokemons.value.filter((pokemon) => pokemon.name.includes(filterValue.value));
   });
 
   function addPokemon(pokemon) {
-    const displayName = pokemon.name.replace(
-      pokemon.name.charAt(0),
-      pokemon.name.charAt(0).toUpperCase()
-    );
+    const displayName = pokemon.name.replace(pokemon.name.charAt(0), pokemon.name.charAt(0).toUpperCase());
 
     pokemons.value.push({
       id: Number(pokemon.url.split("/")[6]),
@@ -84,6 +87,8 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
     pokemons,
     pokemonsFavorite,
     pokemonsFiltered,
+    firstPokemon,
+    lastPokemon,
 
     addPokemon,
     sortPokemons,
