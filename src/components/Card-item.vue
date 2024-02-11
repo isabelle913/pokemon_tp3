@@ -1,14 +1,17 @@
 <template>
-  <div class="flex flex-col items-center basis-60 grow rounded-lg sm:shadow h-[380px] p-2 cursor-pointer" @click="goToDetails(pokemon.id)">
-    <div class="h-3/4">
-      <img class="" :src="pokemon.img" />
+  <div
+    class="flex flex-col items-center basis-60 grow rounded-lg sm:shadow p-2 cursor-pointer"
+    :class="showTypes ? 'h-[380px]' : 'h-[300px]'"
+    @click="goToDetails(pokemon.id)">
+    <div class="" :class="showTypes ? 'h-3/4' : 'h-5/6'">
+      <img class="" :src="pokemon.img" :alt="pokemon.displayName" />
     </div>
     <div class="pt-2">
       <div class="grid grid-cols-12">
-        <div class="col-span-10 text-2xl font-medium text-center pl-2">
+        <div class="text-2xl font-medium text-center pl-2" :class="showFavorite ? 'col-span-10' : 'col-span-12'">
           {{ pokemon.displayName }}
         </div>
-        <div class="col-span-2 group flex">
+        <div v-if="showFavorite" class="col-span-2 group flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -25,7 +28,7 @@
         </div>
       </div>
 
-      <pok-chips :types="pokemon.types"></pok-chips>
+      <pok-chips v-if="showTypes" :types="pokemon.types"></pok-chips>
     </div>
   </div>
 </template>
@@ -42,6 +45,14 @@ const props = defineProps({
   pokemon: {
     type: Object,
     required: true,
+  },
+  showFavorite: {
+    type: Boolean,
+    default: true,
+  },
+  showTypes: {
+    type: Boolean,
+    default: true,
   },
 });
 function onFavorite(id) {
