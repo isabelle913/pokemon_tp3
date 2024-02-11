@@ -1,14 +1,10 @@
 # TP3_Pokemon
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a TP for school. I enjoyed doing this TP for the "User Interface Integration" course. This course is part of an AEC about Front end at Cégep de Trois-Rivières.
 
-## Recommended IDE Setup
+Vue.js and Tailwind CSS frameworks were the ones I used. Axios and PokéApi were also very helpful. Thank you, PokéApi, for your infinite knowledge.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+[pokeapi.co](https://pokeapi.co/)
 
 ## Project Setup
 
@@ -44,32 +40,16 @@ npm run build
 
 [Roboto Serif](https://fonts.google.com/specimen/Roboto+Serif?query=roboto)
 
-TODO effacer
-font-family: "Roboto Flex", sans-serif;
-
 - ExtraLight 200 italic
 - Regular 400 italic
 
 [Roboto Flex](https://fonts.google.com/specimen/Roboto+Flex?query=roboto)
 
-TODO effacer
-font-family: 'Roboto Serif', serif;
-
 - Light 300
 - Regular 400
 - Medium 500
 
-// TODO jouer italic et hover changer couleur
-
 ### Inspiration
 
 [Prizma Studio](https://www.prizma.studio/)
-
-- h1 Ppeditorialnew, sans-serif;
-- Ppmori, sans-serif;
-- Jouer avec italic et hover changer couleur
-
 [pokemon.com](https://www.pokemon.com/fr/pokedex)
-
-- Roboto
-- Flexo
