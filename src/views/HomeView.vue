@@ -66,9 +66,7 @@ const displayPokemons = computed(() => {
 });
 
 function getDetailsPokemons() {
-  console.log("HOME displayPokemons", displayPokemons.value);
   const pokemonsNeedDetails = displayPokemons.value.filter((pokemon) => !pokemon.isLoaded);
-  console.log("HOME pokemonsNeedDetails", pokemonsNeedDetails);
   if (pokemonsNeedDetails.length > 0) requestDetailsPokemon(pokemonsNeedDetails);
 }
 
@@ -91,8 +89,6 @@ watch(displayPokemons, () => {
   font-family: "Roboto Serif", serif;
   font-weight: 400;
   font-size: calc(4em + 8vw);
-  /* font-size: 15vw; */
-  /* font-size: min(30vw, 35px); */
 }
 .home-title:hover {
   color: #f4d77b;
@@ -102,7 +98,7 @@ watch(displayPokemons, () => {
 .slider-pokemons {
   display: grid;
   grid-auto-flow: column;
-  /* grid-auto-columns: 21%; */
+  grid-auto-columns: 21%;
   gap: 10px;
 
   /* overflow-x: auto; */
@@ -125,5 +121,10 @@ watch(displayPokemons, () => {
 .background-home {
   background-image: url("../assets/img/background-ligne-grises.jpg");
   background-size: cover;
+}
+@media (max-width: 600px) {
+  .slider-pokemons {
+    grid-auto-columns: 100%;
+  }
 }
 </style>

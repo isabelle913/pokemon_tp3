@@ -76,7 +76,7 @@ export const usePokemonsStore = defineStore("pokemonStore", () => {
 
   function setFilterValue(searchValue) {
     filterValue.value = searchValue;
-    console.log("pokemonsFiltered.value", pokemonsFiltered.value);
+    // console.log("pokemonsFiltered.value", pokemonsFiltered.value);
   }
 
   return {
