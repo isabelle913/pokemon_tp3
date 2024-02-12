@@ -18,16 +18,10 @@ const { requestPokemons } = useServices();
 onBeforeMount(() => {
   if (store.pokemons && store.pokemons.length) return;
   requestPokemons();
+  console.log(
+    "Bonjour Fabrice, il y a plus de 1200 Pokémons, j'ai chosit dans télécharger seulement 150. L'API des Pokemons fonctionne qu'au premier call il nous envoie seulement le nom et l'url. Pour avoir plus d'info sur ce Pokémon, il faut faire un autre appel avec l'url du Pokémon. Il est possible de changer cette limite via une variable (limit) dans le fichier services. Je fais les appels pour avoir info des Pokémons lors d'une recherche ou pour les afficher dans la page liste Pokémon"
+  );
 });
-
-/* TODO
-
-  Changer limit pour api
-
-  loading
-
-  Mettre en ligne
-*/
 </script>
 
 <style>
