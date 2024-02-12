@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-// TODO hamburger sur petits écrans ou diminuer encore taille du texte
 // TODO ?? POurquoi le lien home nous ramène dans le bas de la page!
 
 import { onMounted, ref } from "vue";

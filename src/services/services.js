@@ -9,8 +9,7 @@ export function useServices() {
   const url_base = "pokemon/?limit=150&offset=0";
 
   function requestPokemons(url = url_base) {
-    // console.log("requestPokemons", pokemons);
-    if (!pokemons) console.log("!!!!!!!!"); // TODO remplacer par un return
+    if (!pokemons) return;
     api
       .get(url)
       .then((resp) => {
@@ -26,14 +25,8 @@ export function useServices() {
       });
   }
 
-  // TODO gestion des erreurs +/- variable dans le store genre isError
-
   async function requestDetailsPokemon(pokemonsNeedDetails) {
-    // console.log("requestDetailsPokemon 0", pokemonsNeedDetails);
-    // console.log(pokemonsNeedDetails.length);
-
     if (!pokemonsNeedDetails.length) return;
-    // console.log("requestDetailsPokemon 1", pokemonsNeedDetails);
 
     let min = 0;
     let max = pokemonsNeedDetails.length <= 3 ? pokemonsNeedDetails.length - 1 : 3;
@@ -48,8 +41,7 @@ export function useServices() {
       max = max + 4 >= length ? length : max + 4;
 
       const datas = await Promise.all(listID.map((id) => api.get(`pokemon/${id}/`)));
-      // TODO  si pas de data ?
-      // console.log(datas);
+      if (!datas) return;
       datas.map((pokemonWithDetails) => {
         if (pokemonWithDetails.status === 200) addDetailsPokemon(pokemonWithDetails.data);
       });
@@ -60,7 +52,5 @@ export function useServices() {
 }
 //https://pokeapi.co/api/v2/
 // pokemon/?limit=1500&offset=0"
-
 //https://pokeapi.co/api/v2/pokemon/?limit=15&offset=0
-
 // const url = "pokemon/?limit=1500&offset=0";

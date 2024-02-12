@@ -21,7 +21,6 @@ onBeforeMount(() => {
 });
 
 /* TODO
-  menu hamburger
 
   Changer limit pour api
 
