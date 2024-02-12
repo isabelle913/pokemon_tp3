@@ -5,15 +5,15 @@ export function useServices() {
   const { pokemons, addPokemon, sortPokemons, addDetailsPokemon } = usePokemonsStore();
 
   const api = axios.create({ baseURL: "https://pokeapi.co/api/v2/" });
-  // TODO mettre variable pour limit et +/- offset
-  const url_base = "pokemon/?limit=150&offset=0";
+  const limit = 150;
+  const url_base = `pokemon/?limit=${limit}&offset=0`;
 
   function requestPokemons(url = url_base) {
     if (!pokemons) return;
     api
       .get(url)
       .then((resp) => {
-        console.log("resp", resp.data.results);
+        // console.log("resp", resp.data.results);
         if (!resp.data.results) throw new Error("Aucun pokemon trouvé");
         resp.data.results.map((pokemon) => {
           addPokemon(pokemon);
