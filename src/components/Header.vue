@@ -20,13 +20,9 @@
 </template>
 
 <script setup>
-// TODO ?? POurquoi le lien home nous ramène dans le bas de la page!
-
-import { onMounted, ref } from "vue";
-import { useObserverStore } from "../stores/observer";
+import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 
-const observerStore = useObserverStore();
 const router = useRouter();
 const isOpenMenu = ref(false);
 
@@ -35,12 +31,7 @@ function goToHome() {
 }
 function onOpenMenu() {
   isOpenMenu.value = !isOpenMenu.value;
-  console.log("miip");
 }
-
-onMounted(() => {
-  observerStore.setHeaderClass(document.querySelector(".header-class"));
-});
 </script>
 
 <style scoped>
